@@ -23,7 +23,6 @@ class main(QWidget):
         self.button8 = QPushButton("Круг", self)
         self.button9 = QPushButton("Квадрат", self)
         self.button10 = QPushButton("Трапецея", self)
-
         self.button_back_from_figures = QPushButton("Назад")
 
         figure_choice_layout = QVBoxLayout()
@@ -40,9 +39,8 @@ class main(QWidget):
         self.figure_choice_box.setLayout(figure_choice_layout)
         self.figure_choice_box.hide()
 
-        # --- Калькулятор (твой оригинальный, без изменений) ---
+        # --- Калькулятор ---
         self.calc_box = QGroupBox("Калькулятор")
-
         self.answer1 = QLineEdit()
         self.answer1.setPlaceholderText("Введите число:")
         self.answer2 = QLineEdit()
@@ -68,41 +66,20 @@ class main(QWidget):
         self.line3.addLayout(self.line2)
         self.line3.addWidget(self.text)
         self.line3.addWidget(self.button_back_from_calc)
-
         self.calc_box.setLayout(self.line3)
         self.calc_box.hide()
 
-        # --- Форма для прямоугольника ---
+        # --- Прямоугольник ---
         self.rect_box = QGroupBox("Прямоугольник")
         self.text1 = QLabel("Прямоугольник")
         self.text2 = QLabel("S = a*b")
         self.text3 = QLabel("Результат:")
         self.lineedit1 = QLineEdit()
-        self.lineedit1.setPlaceholderText("Введите:")
+        self.lineedit1.setPlaceholderText("Введите сторону a")
         self.lineedit2 = QLineEdit()
-        self.lineedit2.setPlaceholderText("Введите:")
+        self.lineedit2.setPlaceholderText("Введите сторону b")
         self.button_answer = QPushButton("Ответ")
         self.button_back_from_rect = QPushButton("Назад")
-
-        #круг
-        self.groupBox = QGroupBox("Круг")
-        self.groupBox.hide()
-        self.info_label = QLabel("S = π * r²")
-        self.lineedit = QLineEdit()
-        self.lineedit.setPlaceholderText("Радиус:")
-        self.result_label = QLabel("Результат:")
-        self.button = QPushButton("Ответ")
-        
-        #квадрат
-        
-        self.info_label = QLabel("S = a * a")
-        self.lineedit = QLineEdit()
-        self.lineedit.setPlaceholderText("Сторона:")
-        self.result_label = QLabel("Результат:")
-        self.button = QPushButton("Ответ")
-        self.button.clicked.connect(self.PushButton5)
-
-
 
         rect_layout = QVBoxLayout()
         rect_layout.addWidget(self.text1, alignment=Qt.AlignCenter)
@@ -115,135 +92,235 @@ class main(QWidget):
         self.rect_box.setLayout(rect_layout)
         self.rect_box.hide()
 
-        # --- Основной лэйаут --- прямоугольника
+        # --- Круг ---
+        self.circle_box = QGroupBox("Круг")
+        self.circle_box.hide()
+        self.circle_info_label = QLabel("S = π * r²")
+        self.circle_input = QLineEdit()
+        self.circle_input.setPlaceholderText("Радиус:")
+        self.circle_result = QLabel("Результат:")
+        self.circle_button = QPushButton("Ответ")
+        self.circle_back_button = QPushButton("Назад")
+
+        circle_layout = QVBoxLayout()
+        circle_layout.addWidget(self.circle_info_label, alignment=Qt.AlignCenter)
+        circle_layout.addWidget(self.circle_input, alignment=Qt.AlignCenter)
+        circle_layout.addWidget(self.circle_result, alignment=Qt.AlignCenter)
+        circle_layout.addWidget(self.circle_button, alignment=Qt.AlignCenter)
+        circle_layout.addWidget(self.circle_back_button, alignment=Qt.AlignCenter)
+        self.circle_box.setLayout(circle_layout)
+
+        # --- Квадрат ---
+        self.square_box = QGroupBox("Квадрат")
+        self.square_box.hide()
+        self.square_info_label = QLabel("S = a²")
+        self.square_input = QLineEdit()
+        self.square_input.setPlaceholderText("Сторона квадрата:")
+        self.square_result = QLabel("Результат:")
+        self.square_button = QPushButton("Ответ")
+        self.square_back_button = QPushButton("Назад")
+
+        square_layout = QVBoxLayout()
+        square_layout.addWidget(self.square_info_label, alignment=Qt.AlignCenter)
+        square_layout.addWidget(self.square_input, alignment=Qt.AlignCenter)
+        square_layout.addWidget(self.square_result, alignment=Qt.AlignCenter)
+        square_layout.addWidget(self.square_button, alignment=Qt.AlignCenter)
+        square_layout.addWidget(self.square_back_button, alignment=Qt.AlignCenter)
+        self.square_box.setLayout(square_layout)
+
+        # --- Трапеция ---
+        self.tr_box = QGroupBox("Трапеция")
+        self.tr_box.hide()
+        self.tr_info_label = QLabel("S = (a + b) / 2 * h")
+        self.tr_lineedit_a = QLineEdit()
+        self.tr_lineedit_a.setPlaceholderText("Сторона a:")
+        self.tr_lineedit_b = QLineEdit()
+        self.tr_lineedit_b.setPlaceholderText("Сторона b:")
+        self.tr_lineedit_h = QLineEdit()
+        self.tr_lineedit_h.setPlaceholderText("Высота h:")
+        self.tr_result_label = QLabel("Результат:")
+        self.tr_button = QPushButton("Ответ")
+        self.tr_back_button = QPushButton("Назад")
+
+        layout_t = QVBoxLayout()
+        layout_t.addWidget(self.tr_info_label, alignment=Qt.AlignCenter)
+        layout_t.addWidget(self.tr_lineedit_a, alignment=Qt.AlignCenter)
+        layout_t.addWidget(self.tr_lineedit_b, alignment=Qt.AlignCenter)
+        layout_t.addWidget(self.tr_lineedit_h, alignment=Qt.AlignCenter)
+        layout_t.addWidget(self.tr_result_label, alignment=Qt.AlignCenter)
+        layout_t.addWidget(self.tr_button, alignment=Qt.AlignCenter)
+        layout_t.addWidget(self.tr_back_button, alignment=Qt.AlignCenter)
+        self.tr_box.setLayout(layout_t)
+
+        # --- Основной layout ---
         main_layout = QHBoxLayout()
         main_layout.addWidget(self.main_choice_box)
         main_layout.addWidget(self.figure_choice_box)
         main_layout.addWidget(self.calc_box)
         main_layout.addWidget(self.rect_box)
-        main_layout.addWidget(self.groupBox)
+        main_layout.addWidget(self.circle_box)
+        main_layout.addWidget(self.square_box)
+        main_layout.addWidget(self.tr_box)
         self.setLayout(main_layout)
-        #круга
-        layout = QVBoxLayout()
-        layout.addWidget(self.info_label, alignment=Qt.AlignCenter)
-        layout.addWidget(self.lineedit, alignment=Qt.AlignCenter)
-        layout.addWidget(self.result_label, alignment=Qt.AlignCenter)
-        layout.addWidget(self.button, alignment=Qt.AlignCenter)
 
-        self.groupBox.setLayout(layout)
-        
-        # --- Подключение кнопок ---
+        # --- Подключения ---
         self.button1.clicked.connect(self.show_calc)
         self.button2.clicked.connect(self.show_figure_choice)
-        
         self.button7.clicked.connect(self.show_rectangle)
+        self.button8.clicked.connect(self.show_circle)
+        self.button9.clicked.connect(self.show_square)
+        self.button10.clicked.connect(self.show_trapezoid)
+
         self.button_back_from_figures.clicked.connect(self.show_main_choice)
         self.button_back_from_calc.clicked.connect(self.show_main_choice)
         self.button_back_from_rect.clicked.connect(self.show_figure_choice)
+        self.circle_back_button.clicked.connect(self.show_figure_choice)
+        self.square_back_button.clicked.connect(self.show_figure_choice)
+        self.tr_back_button.clicked.connect(self.show_figure_choice)
 
         self.button3.clicked.connect(self.count1)
         self.button4.clicked.connect(self.count2)
         self.button5.clicked.connect(self.count3)
         self.button6.clicked.connect(self.count4)
-        self.button_answer.clicked.connect(self.PushButton3)
-        self.button.clicked.connect(self.PushButton4)
-        self.button8.clicked.connect(self.show_circl)
-    # --- Методы переключения ---
+
+        self.button_answer.clicked.connect(self.calc_rectangle_area)
+        self.circle_button.clicked.connect(self.calc_circle_area)
+        self.square_button.clicked.connect(self.calc_square_area)
+        self.tr_button.clicked.connect(self.calc_trapezoid_area)
+
+    # --- Переключения ---
     def show_main_choice(self):
         self.main_choice_box.show()
         self.figure_choice_box.hide()
         self.calc_box.hide()
         self.rect_box.hide()
+        self.circle_box.hide()
+        self.square_box.hide()
+        self.tr_box.hide()
 
     def show_figure_choice(self):
         self.main_choice_box.hide()
         self.figure_choice_box.show()
         self.calc_box.hide()
         self.rect_box.hide()
+        self.circle_box.hide()
+        self.square_box.hide()
+        self.tr_box.hide()
 
     def show_calc(self):
         self.main_choice_box.hide()
         self.figure_choice_box.hide()
         self.calc_box.show()
         self.rect_box.hide()
+        self.circle_box.hide()
+        self.square_box.hide()
+        self.tr_box.hide()
 
     def show_rectangle(self):
         self.main_choice_box.hide()
         self.figure_choice_box.hide()
         self.calc_box.hide()
         self.rect_box.show()
-    def show_circl(self):
+        self.circle_box.hide()
+        self.square_box.hide()
+        self.tr_box.hide()
+
+    def show_circle(self):
         self.main_choice_box.hide()
         self.figure_choice_box.hide()
         self.calc_box.hide()
         self.rect_box.hide()
-        self.groupBox.show()
-    # --- Твои функции калькулятора ---
+        self.circle_box.show()
+        self.square_box.hide()
+        self.tr_box.hide()
+
+    def show_square(self):
+        self.main_choice_box.hide()
+        self.figure_choice_box.hide()
+        self.calc_box.hide()
+        self.rect_box.hide()
+        self.circle_box.hide()
+        self.square_box.show()
+        self.tr_box.hide()
+
+    def show_trapezoid(self):
+        self.main_choice_box.hide()
+        self.figure_choice_box.hide()
+        self.calc_box.hide()
+        self.rect_box.hide()
+        self.circle_box.hide()
+        self.square_box.hide()
+        self.tr_box.show()
+
+    # --- Калькулятор ---
     def count1(self):
         try:
-            num1 = float(self.answer1.text())
-            num2 = float(self.answer2.text())
-            answer = num1 + num2
-            self.text.setText("Ответ:" + str(answer))
+            a = float(self.answer1.text())
+            b = float(self.answer2.text())
+            self.text.setText(f"Ответ: {a + b}")
         except:
-            print("Ошибка")
+            self.text.setText("Ошибка ввода")
 
     def count2(self):
         try:
-            num1 = float(self.answer1.text())
-            num2 = float(self.answer2.text())
-            answer = num1 - num2
-            self.text.setText("Ответ:" + str(answer))
+            a = float(self.answer1.text())
+            b = float(self.answer2.text())
+            self.text.setText(f"Ответ: {a - b}")
         except:
-            print("Ошибка")
+            self.text.setText("Ошибка ввода")
 
     def count3(self):
         try:
-            num1 = float(self.answer1.text())
-            num2 = float(self.answer2.text())
-            answer = num1 * num2
-            self.text.setText("Ответ:" + str(answer))
+            a = float(self.answer1.text())
+            b = float(self.answer2.text())
+            self.text.setText(f"Ответ: {a * b}")
         except:
-            print("Ошибка")
+            self.text.setText("Ошибка ввода")
 
     def count4(self):
         try:
-            num1 = float(self.answer1.text())
-            num2 = float(self.answer2.text())
-            if num2 == 0:
+            a = float(self.answer1.text())
+            b = float(self.answer2.text())
+            if b == 0:
                 self.text.setText("На 0 делить нельзя")
             else:
-                answer = num1 / num2
-                self.text.setText("Ответ:" + str(answer))
+                self.text.setText(f"Ответ: {a / b}")
         except:
-            self.text.setText("Ошибка")
+            self.text.setText("Ошибка ввода")
 
-    # --- Функция площади прямоугольника ---
-    def PushButton3(self):
+    # --- Площади ---
+    def calc_rectangle_area(self):
         try:
-            num3 = float(self.lineedit1.text())
-            num4 = float(self.lineedit2.text())
-            answer = num3 * num4
-            self.text3.setText("Ответ:"+ str(answer))
+            a = float(self.lineedit1.text())
+            b = float(self.lineedit2.text())
+            self.text3.setText(f"Ответ: {a * b}")
         except:
-            print("Ошибка")
+            self.text3.setText("Ошибка ввода")
 
+    def calc_circle_area(self):
+        try:
+            r = float(self.circle_input.text())
+            area = math.pi * r ** 2
+            self.circle_result.setText(f"Ответ: {area}")
+        except:
+            self.circle_result.setText("Ошибка ввода")
 
-    def PushButton4(self):
-            try:
-                radius = float(self.lineedit.text())
-                area = math.pi * radius ** 2
-                self.result_label.setText("Ответ: " + str(area, ))
-            except:
-                self.result_label.setText("Ошибка ввода")
-    
-    def PushButton5(self):
-            try:
-                side = float(self.lineedit.text())
-                area = side * side
-                self.result_label.setText("Ответ: " + str(area))
-            except:
-                self.result_label.setText("Ошибка ввода")
+    def calc_square_area(self):
+        try:
+            a = float(self.square_input.text())
+            self.square_result.setText(f"Ответ: {a ** 2}")
+        except:
+            self.square_result.setText("Ошибка ввода")
+
+    def calc_trapezoid_area(self):
+        try:
+            a = float(self.tr_lineedit_a.text())
+            b = float(self.tr_lineedit_b.text())
+            h = float(self.tr_lineedit_h.text())
+            area = (a + b) / 2 * h
+            self.tr_result_label.setText(f"Ответ: {area}")
+        except:
+            self.tr_result_label.setText("Ошибка ввода")
 
 if __name__ == "__main__":
     app = QApplication([])
