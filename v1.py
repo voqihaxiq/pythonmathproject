@@ -21,7 +21,7 @@ class main(QWidget):
         GroupBox6 = QGroupBox()
         GroupBox7 = QGroupBox()
 
-
+        # NEW CODE
 
         def PushButton1():
             GroupBox1.show()
